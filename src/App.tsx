@@ -6,6 +6,7 @@ import NotFound from './pages/NotFound';
 import Cart from './pages/Cart';
 
 const App: FC = () => {
+
   return (
     <section className='max-w-5xl mx-auto py-12 space-y-10'>
       <Nav />

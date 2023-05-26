@@ -1,7 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
+import filterReducer from './slices/filterSlice.jsx'
+import inputReducer from './slices/InputSlice.js'
 
 const store = configureStore({
-    reducer: {}
+    reducer: {
+        filter: filterReducer,
+        input: inputReducer
+    }
 })
 
 export default store;

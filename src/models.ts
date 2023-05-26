@@ -10,6 +10,6 @@ export interface Pizza {
 }
 
 export interface SortObj {
-    name?: string;
-    sort?: string;
+    name: string;
+    sort: string;
 }
