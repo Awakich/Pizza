@@ -3,10 +3,11 @@ export interface Pizza {
     category?: number;
     imageUrl: string;
     price: number;
-    reting: number;
+    reting?: number;
     sizes: Array<number>;
     title: string;
     types: Array<number>;
+    count: number;
 }
 
 export interface SortObj {

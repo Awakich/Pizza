@@ -4,6 +4,7 @@ import { SortObj } from "../models";
 interface FilterState {
   categoryId: number;
   sortType: SortObj;
+  open: boolean;
 }
 
 const initialState: FilterState = {
@@ -11,7 +12,8 @@ const initialState: FilterState = {
   sortType: {
     name: 'популярности',
     sort: 'rating'
-  }
+  },
+  open: false
 }
 
 const filterSlice = createSlice({
@@ -23,10 +25,13 @@ const filterSlice = createSlice({
     },
     sortTypes(state, action: PayloadAction<SortObj>) {
       state.sortType = action.payload;
+    },
+    closeFilter(state, action: PayloadAction<boolean>) {
+      state.open = action.payload
     }
   },
 });
 
-export const { changeCategory, sortTypes } = filterSlice.actions;
+export const { changeCategory, sortTypes, closeFilter } = filterSlice.actions;
 
 export default filterSlice.reducer;

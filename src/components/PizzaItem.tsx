@@ -1,11 +1,28 @@
 import { FC, useState } from "react"
 import { Pizza } from "../models"
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { addPizza } from "../slices/cartSlice";
 
-const PizzaItem: FC<Pizza> = ({ imageUrl, price, title, types, sizes }) => {
+const PizzaItem: FC<Pizza> = ({ imageUrl, price, title, types, sizes, id }) => {
     const pizzaType: Array<string> = ['тонкое', 'традиционное'];
+
+    const counter = useAppSelector(state => state.cart.pizzas.find(obj => obj.id === id))
+    const dispatch = useAppDispatch()
+
     const [active, setActive] = useState<number>(0)
     const [sizesActive, setsizesActive] = useState<number>(0)
-    const [counter, setCounter] = useState<number>(0)
+
+    const AddPizzaHandler = () => {
+        const item = {
+            id,
+            price,
+            title,
+            imageUrl,
+            types: pizzaType[active],
+            sizes: sizes[sizesActive],
+        }
+        dispatch(addPizza(item))
+    }
 
     return (
         <section className="space-y-5">
@@ -29,7 +46,7 @@ const PizzaItem: FC<Pizza> = ({ imageUrl, price, title, types, sizes }) => {
 
             <div className="flex justify-between items-center">
                 <p className="font-semibold text-2xl">{`от ${price} ₽`}</p>
-                <button className="bg-orange-600 text-white px-5 py-2 rounded-md font-semibold" onClick={() => setCounter(prev => prev + 1)}>Добавить {counter}</button>
+                <button className="bg-orange-600 text-white px-5 py-2 rounded-md font-semibold" onClick={AddPizzaHandler}>Добавить {counter?.count ? counter.count : 0}</button>
             </div>
         </section>
     )

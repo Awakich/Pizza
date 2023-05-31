@@ -33,8 +33,8 @@ const PizzaList: FC = () => {
 
     return (
         <section className='grid grid-cols-3 items-center gap-5 text-center'>
-            {pizzas.filter(item => userInput.toLocaleLowerCase() === '' ? item : item.title.toLocaleLowerCase().includes(userInput.toLocaleLowerCase())).map(({ title, id, sizes, imageUrl, price, reting, types }) => (
-                <PizzaItem key={id} title={title} sizes={sizes} imageUrl={imageUrl} price={price} reting={reting} types={types} />
+            {pizzas.filter(item => userInput.toLocaleLowerCase() === '' ? item : item.title.toLocaleLowerCase().includes(userInput.toLocaleLowerCase())).map(({ count, title, id, sizes, imageUrl, price, reting, types }) => (
+                <PizzaItem key={id} id={id} title={title} sizes={sizes} imageUrl={imageUrl} price={price} reting={reting} types={types} count={count} />
             ))}
         </section>
     )

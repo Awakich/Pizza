@@ -6,7 +6,10 @@ import { changeUserInput } from '../slices/InputSlice';
 
 const Nav: FC = () => {
     const userInput = useAppSelector(state => state.input.userInput)
+    const { pizzas, totalPrice } = useAppSelector(state => state.cart)
     const dispatch = useAppDispatch()
+
+    const totalCount = pizzas.reduce((sum, pizza) => sum + pizza.count, 0)
 
     return (
         <nav className='flex justify-between ietms-center'>
@@ -18,10 +21,10 @@ const Nav: FC = () => {
             </div>
 
             <Link to="/cart" className='flex gap-5 h-12 items-center bg-orange-500 text-white font-semibold px-4 rounded-full'>
-                <p>0 ₽</p>
+                <p>{totalPrice} ₽</p>
                 <div className='flex gap-2'>
                     <ShoppingCartIcon className='h-6 cursor-pointer' />
-                    <p>0</p>
+                    <p>{totalCount}</p>
                 </div>
             </Link>
 
