@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { Pizza } from '../models';
+import { RootState } from '../store';
 
 interface CartProps {
     totalPrice: number;
@@ -52,6 +53,8 @@ const cartSlice = createSlice({
         }
     }
 })
+
+export const cartSelector = (state: RootState) => state.cart
 
 export const { addPizza, clearPizzas, removePizza, minusPizza } = cartSlice.actions;
 

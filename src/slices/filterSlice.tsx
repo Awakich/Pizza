@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { SortObj } from "../models";
+import { RootState } from "../store";
 
 interface FilterState {
   categoryId: number;
@@ -31,6 +32,10 @@ const filterSlice = createSlice({
     }
   },
 });
+
+export const filterSelectorOpen = (state: RootState) => state.filter.open
+export const filterSelectorSort = (state: RootState) => state.filter.sortType
+export const filterSelectorCategory = (state: RootState) => state.filter.categoryId
 
 export const { changeCategory, sortTypes, closeFilter } = filterSlice.actions;
 

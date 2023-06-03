@@ -1,33 +1,39 @@
-import { FC, useEffect, useState } from 'react'
-import { Pizza } from '../models';
+import { FC, useEffect } from 'react'
 import PizzaItem from './PizzaItem';
-import { useAppSelector } from '../hooks';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { PizzaProps, getPizzas } from '../slices/pizzaSlice';
+import Error from './Error';
+import Loading from './Loading';
+import { filterSelectorCategory, filterSelectorSort } from '../slices/filterSlice';
+import { inputSelector } from '../slices/InputSlice';
 
 const PizzaList: FC = () => {
-    const categoryId = useAppSelector(state => state.filter.categoryId)
-    const sortType = useAppSelector(state => state.filter.sortType)
-    const userInput = useAppSelector(state => state.input.userInput)
+    const categoryId = useAppSelector(filterSelectorCategory)
+    const sortType = useAppSelector(filterSelectorSort)
+    const userInput = useAppSelector(inputSelector)
 
-    const [pizzas, setPizzas] = useState<Pizza[]>([])
-    const [loading, setLoading] = useState<boolean>(true)
-    const category = categoryId > 0 ? `category=${categoryId}` : ''
-    const sort = sortType.sort
-    const input = userInput ? userInput : ""
+    const { pizzas, loading }: PizzaProps = useAppSelector(state => state.pizzas)
+    const dispatch = useAppDispatch()
 
-    const getPizzas = async () => {
-        setLoading(true)
-        const res = await fetch(`https://6468f6b203bb12ac208307ac.mockapi.io/pizzas?&${category}&sortBy=${sort}&search=${input}`).then(res => res.json())
-        setPizzas(res)
-        setLoading(false)
+    const fetchPizzas = async () => {
+        const category: string = categoryId > 0 ? `category=${categoryId}` : ''
+        const sort: string = sortType.sort
+        const input: string = userInput ? userInput : ""
+
+        dispatch(getPizzas({ category, sort, input }))
     }
 
     useEffect(() => {
-        getPizzas()
+        fetchPizzas()
     }, [categoryId, sortType, userInput])
 
-    if (loading) {
+    if (loading === 'failed') {
         return (
-            <p>Loading...</p>
+            <Error />
+        )
+    } else if (loading === 'pending') {
+        return (
+            <Loading />
         )
     }
 

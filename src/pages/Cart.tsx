@@ -4,12 +4,12 @@ import { TrashIcon } from '@heroicons/react/24/solid'
 import { useAppDispatch, useAppSelector } from '../hooks'
 import PizzaCart from '../components/PizzaCart'
 import { Link } from 'react-router-dom'
-import { clearPizzas } from '../slices/cartSlice'
+import { cartSelector, clearPizzas } from '../slices/cartSlice'
 import CartEmpty from './CartEmpty'
 
 const Cart: FC = () => {
 
-    const { pizzas, totalPrice } = useAppSelector(state => state.cart)
+    const { pizzas, totalPrice } = useAppSelector(cartSelector)
     const dispatch = useAppDispatch()
 
     const totalCount = pizzas.reduce((sum, pizza) => sum + pizza.count, 0)

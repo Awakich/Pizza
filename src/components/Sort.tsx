@@ -1,12 +1,12 @@
 import { EllipsisHorizontalCircleIcon } from '@heroicons/react/24/solid'
 import { FC } from 'react'
 import { useAppSelector, useAppDispatch } from '../hooks';
-import { sortTypes, closeFilter } from '../slices/filterSlice';
+import { sortTypes, closeFilter, filterSelectorOpen, filterSelectorSort } from '../slices/filterSlice';
 import { SortObj } from '../models';
 
 const Sort: FC = () => {
-    const sortType = useAppSelector(state => state.filter.sortType)
-    const close = useAppSelector(state => state.filter.open)
+    const sortType = useAppSelector(filterSelectorSort)
+    const close = useAppSelector(filterSelectorOpen)
     const dispatch = useAppDispatch()
 
     const sort = [{ name: 'популярности', sort: 'rating' }, { name: 'цене', sort: 'price' }, { name: 'алфавиту', sort: 'title' }]

@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 
 interface InputSlice {
     userInput: string;
@@ -17,6 +18,8 @@ const InputSlice = createSlice({
         }
     }
 })
+
+export const inputSelector = (state: RootState) => state.input.userInput
 
 export const { changeUserInput } = InputSlice.actions;
 

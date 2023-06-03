@@ -1,10 +1,10 @@
 import { FC } from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { changeCategory } from '../slices/filterSlice';
+import { changeCategory, filterSelectorCategory } from '../slices/filterSlice';
 
 
 const Categories: FC = () => {
-    const categoryId = useAppSelector(state => state.filter.categoryId)
+    const categoryId = useAppSelector(filterSelectorCategory)
     const dispatch = useAppDispatch()
 
     const categories: Array<string> = ['все', 'мясные', 'вегетарианская', 'гриль', 'острые', 'закрытые']
