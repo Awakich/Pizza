@@ -5,14 +5,14 @@ import { sortTypes, closeFilter, filterSelectorOpen, filterSelectorSort } from '
 import { SortObj } from '../models';
 
 const Sort: FC = () => {
-    const sortType = useAppSelector(filterSelectorSort)
-    const close = useAppSelector(filterSelectorOpen)
+    const sortType: SortObj = useAppSelector(filterSelectorSort)
+    const close: boolean = useAppSelector(filterSelectorOpen)
     const dispatch = useAppDispatch()
 
-    const sort = [{ name: 'популярности', sort: 'rating' }, { name: 'цене', sort: 'price' }, { name: 'алфавиту', sort: 'title' }]
+    const sort: { name: string; sort: string }[] = [{ name: 'популярности', sort: 'rating' }, { name: 'цене', sort: 'price' }, { name: 'алфавиту', sort: 'title' }]
 
 
-    const changeSelectHandler = (i: SortObj) => {
+    const changeSelectHandler: (i: SortObj) => void = (i: SortObj): void => {
         dispatch(sortTypes(i))
         dispatch(closeFilter(!close))
     }
@@ -32,7 +32,7 @@ const Sort: FC = () => {
                 close && (
                     <ul className='absolute top-[29%] left-[30%] bg-white rounded-md'>
                         {sort.map((obj, i) => (
-                            <li key={i} onClick={() => changeSelectHandler(obj)} className='hover:text-orange-600 hover:bg-orange-100 cursor-pointer px-5 py-2 font-semibold'>{obj.name}</li>
+                            <li key={i} onClick={(): void => changeSelectHandler(obj)} className='hover:text-orange-600 hover:bg-orange-100 cursor-pointer px-5 py-2 font-semibold'>{obj.name}</li>
                         ))}
                     </ul>
                 )

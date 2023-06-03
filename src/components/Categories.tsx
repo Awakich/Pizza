@@ -4,7 +4,7 @@ import { changeCategory, filterSelectorCategory } from '../slices/filterSlice';
 
 
 const Categories: FC = () => {
-    const categoryId = useAppSelector(filterSelectorCategory)
+    const categoryId: number = useAppSelector(filterSelectorCategory)
     const dispatch = useAppDispatch()
 
     const categories: Array<string> = ['все', 'мясные', 'вегетарианская', 'гриль', 'острые', 'закрытые']

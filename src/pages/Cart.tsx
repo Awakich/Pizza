@@ -12,7 +12,7 @@ const Cart: FC = () => {
     const { pizzas, totalPrice } = useAppSelector(cartSelector)
     const dispatch = useAppDispatch()
 
-    const totalCount = pizzas.reduce((sum, pizza) => sum + pizza.count, 0)
+    const totalCount:number = pizzas.reduce((sum, pizza) => sum + pizza.count, 0)
 
     if (totalPrice === 0) {
         return <CartEmpty />

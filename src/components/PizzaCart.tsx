@@ -7,7 +7,7 @@ import { addPizza, minusPizza, removePizza } from '../slices/cartSlice'
 const PizzaCart: FC<Pizza> = ({ count, imageUrl, price, sizes, title, types, id }) => {
     const dispatch = useAppDispatch()
 
-    const ChangePizza = () => {
+    const ChangePizza: () => void = (): void => {
         dispatch(removePizza({
             id,
             price

@@ -1,8 +1,8 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { Pizza } from '../models';
 import { RootState } from '../store';
 
-interface CartProps {
+export interface CartProps {
     totalPrice: number;
     pizzas: Pizza[]
 }
@@ -16,7 +16,7 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        addPizza(state, action) {
+        addPizza(state, action): void {
             const findPizza = state.pizzas.find(obj => obj.id === action.payload.id)
 
             if (findPizza) {
@@ -28,26 +28,26 @@ const cartSlice = createSlice({
                 })
             }
 
-            state.totalPrice = state.pizzas.reduce((sum, pizza) => sum + pizza.price * pizza.count, 0)
+            state.totalPrice = state.pizzas.reduce((sum, pizza): number => sum + pizza.price * pizza.count, 0)
         },
 
-        minusPizza(state, action) {
+        minusPizza(state, action): void {
             const findPizza = state.pizzas.find(obj => obj.id === action.payload.id)
 
             if (findPizza) {
                 findPizza.count--;
             }
 
-            state.totalPrice = state.pizzas.reduce((sum, pizza) => sum + pizza.price * pizza.count, 0)
+            state.totalPrice = state.pizzas.reduce((sum, pizza): number => sum + pizza.price * pizza.count, 0)
         },
 
         removePizza(state, action) {
             state.pizzas = state.pizzas.filter(item => item.id !== action.payload.id)
 
-            state.totalPrice = state.pizzas.reduce((sum, pizza) => sum + pizza.price * pizza.count, 0)
+            state.totalPrice = state.pizzas.reduce((sum, pizza): number => sum + pizza.price * pizza.count, 0)
         },
 
-        clearPizzas(state) {
+        clearPizzas(state): void {
             state.pizzas = []
             state.totalPrice = 0
         }

@@ -3,21 +3,21 @@ import { FC } from 'react'
 import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { changeUserInput, inputSelector } from '../slices/InputSlice';
-import { cartSelector } from '../slices/cartSlice';
+import { CartProps, cartSelector } from '../slices/cartSlice';
 
 const Nav: FC = () => {
-    const userInput = useAppSelector(inputSelector)
-    const { pizzas, totalPrice } = useAppSelector(cartSelector)
+    const userInput: string = useAppSelector(inputSelector)
+    const { pizzas, totalPrice }: CartProps = useAppSelector(cartSelector)
     const dispatch = useAppDispatch()
 
-    const totalCount = pizzas.reduce((sum, pizza) => sum + pizza.count, 0)
+    const totalCount: number = pizzas.reduce((sum, pizza) => sum + pizza.count, 0)
 
     return (
         <nav className='flex justify-between ietms-center'>
             <div className='flex items-center gap-5'>
                 <Link to={'/'}><h2 className='font-black text-5xl'>Лучшая пицца🍕</h2></Link>
                 <MagnifyingGlassIcon className='h-6 absolute top-[6,5%] left-[38%]' />
-                <input value={userInput} onChange={(e) => dispatch(changeUserInput(e.target.value))} placeholder='Введите название пиццы' className='w-full outline-none border-[1px] border-gray-300 rounded-md pl-12 text-black/70 py-2 bg-transparent' />
+                <input value={userInput} onChange={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeUserInput(e.target.value))} placeholder='Введите название пиццы' className='w-full outline-none border-[1px] border-gray-300 rounded-md pl-12 text-black/70 py-2 bg-transparent' />
                 {userInput && <XMarkIcon className='h-6 absolute top-[6,5%] left-[58%] opacity-70 hover:opacity-100 cursor-pointer' onClick={() => dispatch(changeUserInput(''))} />}
             </div>
 

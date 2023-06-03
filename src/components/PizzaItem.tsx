@@ -12,7 +12,7 @@ const PizzaItem: FC<Pizza> = ({ imageUrl, price, title, types, sizes, id }) => {
     const [active, setActive] = useState<number>(0)
     const [sizesActive, setsizesActive] = useState<number>(0)
 
-    const AddPizzaHandler = () => {
+    const AddPizzaHandler: () => void = (): void => {
         const item = {
             id,
             price,
@@ -38,7 +38,7 @@ const PizzaItem: FC<Pizza> = ({ imageUrl, price, title, types, sizes, id }) => {
 
                 <div className="flex gap-3 justify-center items-center">
                     {sizes.map((size, i) => (
-                        <p key={i} onClick={() => setsizesActive(i)} className={sizesActive === i ? `bg-white px-4 py-1 text-lg rounded-md cursor-pointer hover:bg-white/70` : "cursor-pointer"}>{size} см</p>
+                        <p key={i} onClick={(): void => setsizesActive(i)} className={sizesActive === i ? `bg-white px-4 py-1 text-lg rounded-md cursor-pointer hover:bg-white/70` : "cursor-pointer"}>{size} см</p>
                     ))}
                 </div>
 

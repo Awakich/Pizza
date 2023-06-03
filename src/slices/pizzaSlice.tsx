@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { Pizza } from "../models";
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 export interface PizzaProps {
     pizzas: Pizza[]
@@ -13,9 +13,9 @@ interface Params {
     input: string;
 }
 
-export const getPizzas = createAsyncThunk('pizzas/getPizzaId', async (param: Params) => {
+export const getPizzas = createAsyncThunk('pizzas/getPizzaId', async (param: Params): Promise<Pizza[]> => {
     const { category, sort, input } = param;
-    const res = await axios.get(`https://6468f6b203bb12ac208307ac.mockapi.io/pizzas?&${category}&sortBy=${sort}&search=${input}`);
+    const res: AxiosResponse<Pizza[]> = await axios.get<Pizza[]>(`https://6468f6b203bb12ac208307ac.mockapi.io/pizzas?&${category}&sortBy=${sort}&search=${input}`);
     return res.data;
 })
 

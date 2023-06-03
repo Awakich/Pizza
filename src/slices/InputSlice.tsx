@@ -19,7 +19,7 @@ const InputSlice = createSlice({
     }
 })
 
-export const inputSelector = (state: RootState) => state.input.userInput
+export const inputSelector = (state: RootState): string => state.input.userInput
 
 export const { changeUserInput } = InputSlice.actions;
 
