@@ -1,12 +1,12 @@
 import { FC, useEffect } from 'react'
-import PizzaItem from './PizzaItem';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { PizzaProps, getPizzas } from '../slices/pizzaSlice';
-import Error from './Error';
-import Loading from './Loading';
 import { filterSelectorCategory, filterSelectorSort } from '../slices/filterSlice';
 import { inputSelector } from '../slices/InputSlice';
 import { SortObj } from '../models';
+import Error from './Error';
+import Loading from './Loading';
+import PizzaItem from './PizzaItem';
 
 const PizzaList: FC = () => {
     const categoryId: number = useAppSelector(filterSelectorCategory)
@@ -24,7 +24,7 @@ const PizzaList: FC = () => {
         dispatch(getPizzas({ category, sort, input }))
     }
 
-    useEffect(() => {
+    useEffect((): void => {
         fetchPizzas()
     }, [categoryId, sortType, userInput])
 

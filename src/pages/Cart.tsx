@@ -2,9 +2,10 @@ import { ShoppingCartIcon } from '@heroicons/react/20/solid'
 import { FC } from 'react'
 import { TrashIcon } from '@heroicons/react/24/solid'
 import { useAppDispatch, useAppSelector } from '../hooks'
-import PizzaCart from '../components/PizzaCart'
 import { Link } from 'react-router-dom'
 import { cartSelector, clearPizzas } from '../slices/cartSlice'
+import { Pizza } from '../models'
+import PizzaCart from '../components/PizzaCart'
 import CartEmpty from './CartEmpty'
 
 const Cart: FC = () => {
@@ -12,7 +13,7 @@ const Cart: FC = () => {
     const { pizzas, totalPrice } = useAppSelector(cartSelector)
     const dispatch = useAppDispatch()
 
-    const totalCount:number = pizzas.reduce((sum, pizza) => sum + pizza.count, 0)
+    const totalCount: number = pizzas.reduce((sum: number, pizza: Pizza): number => sum + pizza.count, 0)
 
     if (totalPrice === 0) {
         return <CartEmpty />
@@ -44,7 +45,7 @@ const Cart: FC = () => {
 
             {pizzas && pizzas?.map(({ price, imageUrl, sizes, title, types, count, id, }) => (
                 <>
-                    {count ? <PizzaCart price={price} imageUrl={imageUrl} title={title} count={count} types={types} sizes={sizes} key={id} id={id} /> : ''}
+                    {count ? <PizzaCart key={id} price={price} imageUrl={imageUrl} title={title} count={count} types={types} sizes={sizes} id={id} /> : ''}
                 </>
             ))}
 

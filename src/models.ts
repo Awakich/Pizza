@@ -3,10 +3,20 @@ export interface Pizza {
     category?: number;
     imageUrl: string;
     price: number;
-    sizes: Array<number>;
+    sizes: string[];
     title: string;
-    types: Array<number>;
+    types: number[];
     count: number;
+}
+
+export interface PizzaInfo {
+    id: number;
+    price: number;
+    title: string;
+    imageUrl: string;
+    types: string;
+    sizes: string;
+    count: number
 }
 
 export interface SortObj {

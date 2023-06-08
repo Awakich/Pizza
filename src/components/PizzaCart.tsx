@@ -11,21 +11,21 @@ const PizzaCart: FC<Pizza> = ({ count, imageUrl, price, sizes, title, types, id 
         dispatch(removePizza({
             id,
             price
-        }))
+        } as Pizza))
     }
 
-    const PlusPizza = () => {
+    const PlusPizza: () => void = (): void => {
         dispatch(addPizza({
             id,
             price,
-        }))
+        } as Pizza))
     }
 
-    const MinusPizza = () => {
+    const MinusPizza: () => void = (): void => {
         dispatch(minusPizza({
             id,
             price
-        }))
+        } as Pizza))
     }
 
     return (

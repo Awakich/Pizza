@@ -31,8 +31,8 @@ const Sort: FC = () => {
             {
                 close && (
                     <ul className='absolute top-[29%] left-[30%] bg-white rounded-md'>
-                        {sort.map((obj, i) => (
-                            <li key={i} onClick={(): void => changeSelectHandler(obj)} className='hover:text-orange-600 hover:bg-orange-100 cursor-pointer px-5 py-2 font-semibold'>{obj.name}</li>
+                        {sort.map((obj: SortObj, i: number) => (
+                            <li key={i as number} onClick={(): void => changeSelectHandler(obj as SortObj)} className='hover:text-orange-600 hover:bg-orange-100 cursor-pointer px-5 py-2 font-semibold'>{obj.name}</li>
                         ))}
                     </ul>
                 )

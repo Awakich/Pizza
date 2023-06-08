@@ -1,5 +1,5 @@
 import { FC, useState } from "react"
-import { Pizza } from "../models"
+import { Pizza, PizzaInfo } from "../models"
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { addPizza } from "../slices/cartSlice";
 
@@ -13,13 +13,14 @@ const PizzaItem: FC<Pizza> = ({ imageUrl, price, title, types, sizes, id }) => {
     const [sizesActive, setsizesActive] = useState<number>(0)
 
     const AddPizzaHandler: () => void = (): void => {
-        const item = {
+        const item: PizzaInfo = {
             id,
             price,
             title,
             imageUrl,
             types: pizzaType[active],
             sizes: sizes[sizesActive],
+            count: 0,
         }
         dispatch(addPizza(item))
     }
@@ -31,13 +32,13 @@ const PizzaItem: FC<Pizza> = ({ imageUrl, price, title, types, sizes, id }) => {
 
             <div className="bg-gray-200 py-2 rounded-md space-y-2">
                 <div className="flex gap-3 justify-center items-center  mx-auto">
-                    {types.map((type, i) => (
-                        <p key={i} onClick={() => setActive(i)} className={active === i ? `bg-white px-4 py-1 text-lg rounded-md cursor-pointer hover:bg-white/70` : "cursor-pointer"}>{pizzaType[type]}</p>
+                    {types.map((type: number, i: number) => (
+                        <p key={i as number} onClick={(): void => setActive(i as number)} className={active === i ? `bg-white px-4 py-1 text-lg rounded-md cursor-pointer hover:bg-white/70` : "cursor-pointer"}>{pizzaType[type]}</p>
                     ))}
                 </div>
 
                 <div className="flex gap-3 justify-center items-center">
-                    {sizes.map((size, i) => (
+                    {sizes.map((size: string, i: number) => (
                         <p key={i} onClick={(): void => setsizesActive(i)} className={sizesActive === i ? `bg-white px-4 py-1 text-lg rounded-md cursor-pointer hover:bg-white/70` : "cursor-pointer"}>{size} см</p>
                     ))}
                 </div>
