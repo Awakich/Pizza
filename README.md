@@ -7,6 +7,7 @@
   <li><img style='width: 20px' src="https://www.svgrepo.com/show/374167/vite.svg" /><i> Vite</i> - for best local development</li>
   <li><img style='width: 20px' src="https://www.svgrepo.com/show/374144/typescript.svg" /><i> TypeScript</i> - for type checking</li>
   <li><img style='width: 20px' src="https://duncanleung.com/static/4754115ddd48b63d252f8014e9a86177/92ab1/storybook.png" /><i> StoryBook</i> - for UI-kit and tests</li>
+<li><img style='width: 20px'src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/2048px-Tailwind_CSS_Logo.svg.png' /><i> Tailwind css</i> - for styles</li>
 </ul>
 
 <hr/>
