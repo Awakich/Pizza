@@ -1,13 +1,13 @@
 import { MagnifyingGlassIcon, ShoppingCartIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../hooks';
-import { changeUserInput, inputSelector } from '../slices/InputSlice';
-import { CartProps, cartSelector } from '../slices/cartSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { changeUserInput, inputSelector } from '../../slices/InputSlice';
+import { ICart, cartSelector } from '../../slices/cartSlice';
 
 const Nav: FC = () => {
     const userInput: string = useAppSelector(inputSelector)
-    const { pizzas, totalPrice }: CartProps = useAppSelector(cartSelector)
+    const { pizzas, totalPrice }: ICart = useAppSelector(cartSelector)
     const dispatch = useAppDispatch()
 
     const totalCount: number = pizzas.reduce((sum, pizza) => sum + pizza.count, 0)

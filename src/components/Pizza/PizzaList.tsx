@@ -1,16 +1,16 @@
 import { FC, useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../hooks';
-import { PizzaProps, getPizzas } from '../slices/pizzaSlice';
-import { filterSelectorCategory, filterSelectorSort } from '../slices/filterSlice';
-import { inputSelector } from '../slices/InputSlice';
-import { SortObj } from '../models';
-import Error from './Error';
-import Loading from './Loading';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { PizzaProps, getPizzas } from '../../slices/pizzaSlice';
+import { filterSelectorCategory, filterSelectorSort } from '../../slices/filterSlice';
+import { inputSelector } from '../../slices/InputSlice';
+import { ISort } from '../../models';
 import PizzaItem from './PizzaItem';
+import Error from '../Other/Error';
+import Loading from '../Other/Loading';
 
 const PizzaList: FC = () => {
     const categoryId: number = useAppSelector(filterSelectorCategory)
-    const sortType: SortObj = useAppSelector(filterSelectorSort)
+    const sortType: ISort = useAppSelector(filterSelectorSort)
     const userInput: string = useAppSelector(inputSelector)
 
     const { pizzas, loading }: PizzaProps = useAppSelector(state => state.pizzas)

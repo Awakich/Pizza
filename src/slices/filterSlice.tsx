@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { SortObj } from "../models";
+import { ISort } from "../models";
 import { RootState } from "../store";
 
-interface FilterState {
+interface IFilterState {
   categoryId: number;
-  sortType: SortObj;
+  sortType: ISort;
   open: boolean;
 }
 
-const initialState: FilterState = {
+const initialState: IFilterState = {
   categoryId: 0,
   sortType: {
     name: 'популярности',
@@ -24,7 +24,7 @@ const filterSlice = createSlice({
     changeCategory(state, action: PayloadAction<number>): void {
       state.categoryId = action.payload
     },
-    sortTypes(state, action: PayloadAction<SortObj>): void {
+    sortTypes(state, action: PayloadAction<ISort>): void {
       state.sortType = action.payload;
     },
     closeFilter(state, action: PayloadAction<boolean>): void {
@@ -34,7 +34,7 @@ const filterSlice = createSlice({
 });
 
 export const filterSelectorOpen = (state: RootState): boolean => state.filter.open
-export const filterSelectorSort = (state: RootState): SortObj => state.filter.sortType
+export const filterSelectorSort = (state: RootState): ISort => state.filter.sortType
 export const filterSelectorCategory = (state: RootState): number => state.filter.categoryId
 
 export const { changeCategory, sortTypes, closeFilter } = filterSlice.actions;

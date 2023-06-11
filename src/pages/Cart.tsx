@@ -4,21 +4,21 @@ import { TrashIcon } from '@heroicons/react/24/solid'
 import { useAppDispatch, useAppSelector } from '../hooks'
 import { Link } from 'react-router-dom'
 import { cartSelector, clearPizzas } from '../slices/cartSlice'
-import { Pizza } from '../models'
-import PizzaCart from '../components/PizzaCart'
+import { IPizza } from '../models'
+import PizzaCart from '../components/Pizza/PizzaCart'
 import CartEmpty from './CartEmpty'
+import Button from '../components/Layout/Button'
 
 const Cart: FC = () => {
 
     const { pizzas, totalPrice } = useAppSelector(cartSelector)
     const dispatch = useAppDispatch()
 
-    const totalCount: number = pizzas.reduce((sum: number, pizza: Pizza): number => sum + pizza.count, 0)
+    const totalCount: number = pizzas.reduce((sum: number, pizza: IPizza): number => sum + pizza.count, 0)
 
     if (totalPrice === 0) {
         return <CartEmpty />
     }
-
 
     return (
         <div>
@@ -51,11 +51,11 @@ const Cart: FC = () => {
 
             <div className='flex items-center justify-between mt-5'>
                 <Link to={'/'}>
-                    <button className='rounded-full border-2 border-gray-400 text-gray-400 py-2 px-4 bg-transparent hover:bg-gray-400 hover:text-white'>Вернуться назад</button>
+                    <Button text='Вернуться назад' className='rounded-full border-2 border-gray-400 text-gray-400 py-2 px-4 bg-transparent hover:bg-gray-400 hover:text-white' />
                 </Link>
 
                 <Link to={'/payment'}>
-                    <button className='rounded-full border-2 border-orange-500 text-orange-500 py-2 px-4 bg-transparent hover:bg-orange-500 hover:text-white'>Оплатить сейчас</button>
+                    <Button text='Оплатить сейчас' className='rounded-full border-2 border-orange-500 text-orange-500 py-2 px-4 bg-transparent hover:bg-orange-500 hover:text-white' />
                 </Link>
             </div>
         </div>

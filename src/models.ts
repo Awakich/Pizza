@@ -1,4 +1,4 @@
-export interface Pizza {
+export interface IPizza {
     id: number;
     category?: number;
     imageUrl: string;
@@ -9,7 +9,7 @@ export interface Pizza {
     count: number;
 }
 
-export interface PizzaInfo {
+export interface IPizzaInfo {
     id: number;
     price: number;
     title: string;
@@ -19,7 +19,7 @@ export interface PizzaInfo {
     count: number
 }
 
-export interface SortObj {
+export interface ISort {
     name: string;
     sort: string;
 }

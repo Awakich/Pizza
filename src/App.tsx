@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import Nav from './components/Nav';
+import Nav from './components/Other/Nav';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Cart from './pages/Cart';

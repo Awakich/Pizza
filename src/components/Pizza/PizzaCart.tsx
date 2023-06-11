@@ -1,31 +1,32 @@
 import { FC } from 'react'
-import { Pizza } from "../models"
+import { IPizza } from "../../models"
 import { XCircleIcon } from '@heroicons/react/24/outline'
-import { useAppDispatch } from '../hooks'
-import { addPizza, minusPizza, removePizza } from '../slices/cartSlice'
+import { useAppDispatch } from '../../hooks'
+import { addPizza, minusPizza, removePizza } from '../../slices/cartSlice'
+import Button from '../Layout/Button'
 
-const PizzaCart: FC<Pizza> = ({ count, imageUrl, price, sizes, title, types, id }) => {
+const PizzaCart: FC<IPizza> = ({ count, imageUrl, price, sizes, title, types, id }) => {
     const dispatch = useAppDispatch()
 
     const ChangePizza: () => void = (): void => {
         dispatch(removePizza({
             id,
             price
-        } as Pizza))
+        } as IPizza))
     }
 
     const PlusPizza: () => void = (): void => {
         dispatch(addPizza({
             id,
             price,
-        } as Pizza))
+        } as IPizza))
     }
 
     const MinusPizza: () => void = (): void => {
         dispatch(minusPizza({
             id,
             price
-        } as Pizza))
+        } as IPizza))
     }
 
     return (
@@ -40,9 +41,9 @@ const PizzaCart: FC<Pizza> = ({ count, imageUrl, price, sizes, title, types, id 
             </div>
 
             <div className='flex items-center gap-5'>
-                <button onClick={MinusPizza} className='font-bold text-lg text-orange-500 border-2 border-orange-500 w-10 h-10 rounded-full bg-transparent hover:bg-orange-500 hover:text-white' >-</button>
+                <Button text='-' onClick={MinusPizza} className='font-bold text-lg text-orange-500 border-2 border-orange-500 w-10 h-10 rounded-full bg-transparent hover:bg-orange-500 hover:text-white' />
                 <p className='font-bold text-xl'>{count}</p>
-                <button onClick={PlusPizza} className='font-bold text-lg text-orange-500 border-2 border-orange-500 w-10 h-10 rounded-full bg-transparent hover:bg-orange-500 hover:text-white' >+</button>
+                <Button text='+' onClick={PlusPizza} className='font-bold text-lg text-orange-500 border-2 border-orange-500 w-10 h-10 rounded-full bg-transparent hover:bg-orange-500 hover:text-white' />
                 <p className='font-bold text-xl'>{price * count} ₽</p>
             </div>
 

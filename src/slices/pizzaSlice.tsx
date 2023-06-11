@@ -1,21 +1,21 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { Pizza } from "../models";
+import { IPizza } from "../models";
 import axios, { AxiosResponse } from 'axios';
 
 export interface PizzaProps {
-    pizzas: Pizza[]
+    pizzas: IPizza[]
     loading: 'succes' | 'failed' | 'pending';
 }
 
-interface Params {
+interface IParams {
     category: string;
     sort: string;
     input: string;
 }
 
-export const getPizzas = createAsyncThunk<Pizza[], Params>('pizzas/getPizzaId', async (param: Params): Promise<Pizza[]> => {
+export const getPizzas = createAsyncThunk<IPizza[], IParams>('pizzas/getPizzaId', async (param: IParams): Promise<IPizza[]> => {
     const { category, sort, input } = param;
-    const res: AxiosResponse<Pizza[]> = await axios.get<Pizza[]>(`https://6468f6b203bb12ac208307ac.mockapi.io/pizzas?&${category}&sortBy=${sort}&search=${input}`);
+    const res: AxiosResponse<IPizza[]> = await axios.get<IPizza[]>(`https://6468f6b203bb12ac208307ac.mockapi.io/pizzas?&${category}&sortBy=${sort}&search=${input}`);
     return res.data;
 })
 
@@ -30,7 +30,7 @@ const pizzaSlice = createSlice({
     reducers: {},
 
     extraReducers: (builder): void => {
-        builder.addCase(getPizzas.fulfilled, (state, action: PayloadAction<Pizza[]>): void => {
+        builder.addCase(getPizzas.fulfilled, (state, action: PayloadAction<IPizza[]>): void => {
             state.pizzas = action.payload
             state.loading = 'succes'
         }),

@@ -1,7 +1,7 @@
 import { FC } from 'react'
-import PizzaList from '../components/PizzaList';
-import Categories from '../components/Categories';
-import Sort from '../components/Sort';
+import Categories from '../components/Filter/Categories';
+import PizzaList from '../components/Pizza/PizzaList';
+import Sort from '../components/Filter/Sort';
 
 const Home: FC = () => {
     return (

@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
-interface InputSlice {
+interface IInputSlice {
     userInput: string;
 }
 
-const initialState: InputSlice = {
+const initialState: IInputSlice = {
     userInput: ''
 }
 

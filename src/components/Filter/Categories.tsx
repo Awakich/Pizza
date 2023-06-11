@@ -1,6 +1,6 @@
 import { FC, memo, useCallback } from 'react'
-import { useAppDispatch, useAppSelector } from '../hooks';
-import { changeCategory, filterSelectorCategory } from '../slices/filterSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { changeCategory, filterSelectorCategory } from '../../slices/filterSlice';
 
 
 const Categories: FC = memo(() => {
