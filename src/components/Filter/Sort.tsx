@@ -18,26 +18,29 @@ const Sort: FC = () => {
     }
 
     return (
-        <div>
+        <>
             <div className='flex gap-2 relative'>
                 <EllipsisHorizontalCircleIcon className='h-6' />
                 <p> Сортировать по:
-                    <span onClick={() => dispatch(closeFilter(!close))} className='cursor-pointer underline ml-1 text-orange-600'>
+                    <span onClick={() => dispatch(closeFilter(!close))} className='hidden sm:inline-flex cursor-pointer underline ml-1 text-orange-600'>
                         {sortType.name}
                     </span>
+                    {sort.map((obj: ISort, i: number) => (
+                        <li key={i as number} onClick={(): void => changeSelectHandler(obj as ISort)} className='flex sm:hidden flex-col cursor-pointer font-semibold'>{obj.name}</li>
+                    ))}
                 </p>
             </div>
 
             {
                 close && (
-                    <ul className='absolute top-[29%] left-[30%] bg-white rounded-md'>
+                    <ul className='hidden sm:block absolute top-[28%] 2xl:left-[26%] xl:top-[23%] xl:left-[20%] lg:left-[15%] md:left-[20%] sm:left-[21%] md:top-[22%] bg-white rounded-md'>
                         {sort.map((obj: ISort, i: number) => (
                             <li key={i as number} onClick={(): void => changeSelectHandler(obj as ISort)} className='hover:text-orange-600 hover:bg-orange-100 cursor-pointer px-5 py-2 font-semibold'>{obj.name}</li>
                         ))}
                     </ul>
                 )
             }
-        </div >
+        </ >
     )
 }
 

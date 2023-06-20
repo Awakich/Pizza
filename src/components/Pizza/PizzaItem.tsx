@@ -27,20 +27,20 @@ const PizzaItem: FC<IPizza> = ({ imageUrl, price, title, types, sizes, id }) => 
     }
 
     return (
-        <section className="space-y-5">
+        <section className="space-y-3 md:space-y-5 lg:w-full md:w-4/5 mx-auto sm:w-4/5">
             <img alt='pizza' src={imageUrl} />
-            <h1 className="font-bold text-2xl">{title}</h1>
+            <h1 className="font-bold xl:text-xl lg: md:text-xl text-lg">{title}</h1>
 
             <div className="bg-gray-200 py-2 rounded-md space-y-2">
-                <div className="flex gap-3 justify-center items-center  mx-auto">
+                <div className="flex gap-3 justify-center items-center mx-auto">
                     {types.map((type: number, i: number) => (
-                        <p key={i as number} onClick={(): void => setActive(i as number)} className={active === i ? `bg-white px-4 py-1 text-lg rounded-md cursor-pointer hover:bg-white/70` : "cursor-pointer"}>{pizzaType[type]}</p>
+                        <p key={i as number} onClick={(): void => setActive(i as number)} className={active === i ? `bg-white px-4 py-1 sm:text-base text-lg rounded-md cursor-pointer hover:bg-white/70` : "sm:text-base cursor-pointer"}>{pizzaType[type]}</p>
                     ))}
                 </div>
 
                 <div className="flex gap-3 justify-center items-center">
                     {sizes.map((size: string, i: number) => (
-                        <p key={i} onClick={(): void => setsizesActive(i)} className={sizesActive === i ? `bg-white px-4 py-1 text-lg rounded-md cursor-pointer hover:bg-white/70` : "cursor-pointer"}>{size} см</p>
+                        <p key={i} onClick={(): void => setsizesActive(i)} className={sizesActive === i ? `bg-white px-4 py-1 sm:text-base text-lg rounded-md cursor-pointer hover:bg-white/70` : "sm:text-base cursor-pointer"}>{size} см</p>
                     ))}
                 </div>
 

@@ -22,9 +22,9 @@ const Cart: FC = () => {
 
     return (
         <div>
-            <div className='flex justify-between'>
+            <div className='flex justify-around sm:justify-between'>
 
-                <div className='flex gap-5'>
+                <div className='sm:flex gap-5 hidden'>
                     <ShoppingCartIcon className='h-8' />
                     <h2>Корзина</h2>
                 </div>

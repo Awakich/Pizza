@@ -39,7 +39,7 @@ const PizzaList: FC = () => {
     }
 
     return (
-        <section className='grid grid-cols-3 items-center gap-5 text-center'>
+        <section className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-center xl:gap-8 lg:gap-6 text-center'>
             {pizzas.filter(item => userInput.toLocaleLowerCase() === '' ? item : item.title.toLocaleLowerCase().includes(userInput.toLocaleLowerCase())).map(({ count, title, id, sizes, imageUrl, price, types }) => (
                 <PizzaItem key={id} id={id} title={title} sizes={sizes} imageUrl={imageUrl} price={price} types={types} count={count} />
             ))}
