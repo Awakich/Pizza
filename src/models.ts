@@ -23,3 +23,9 @@ export interface ISort {
     name: string;
     sort: string;
 }
+
+export interface IParams {
+    category: string;
+    sort: string;
+    input: string;
+}

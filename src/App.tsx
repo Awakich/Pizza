@@ -10,7 +10,6 @@ const App: FC = () => {
   return (
     <section className='max-w-5xl mx-auto py-12 space-y-10 px-2 sm:px-4 lg:px-4'>
       <Nav />
-
       <Routes>
         <Route element={<Home />} path='/' />
         <Route element={<NotFound />} path='*' />
